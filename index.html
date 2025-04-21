@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>3.3 个人简历表格（增强版）</title>
+    <style>
+        body {
+            font-family: '微软雅黑', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border: 2px solid #c00;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        caption {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            color: #c00;
+            position: relative;
+        }
+        caption:after {
+            content: "🍁";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        td, th {
+            padding: 12px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        fieldset {
+            margin: 10px;
+            border: 1px solid #c00;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        legend {
+            color: #c00;
+            font-weight: bold;
+            padding: 0 10px;
+            background-color: white;
+            border: 1px solid #c00;
+            border-radius: 3px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #c00;
+            box-shadow: 0 0 5px rgba(200,0,0,0.3);
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+        }
+        button {
+            background-color: #c00;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background-color: #a00;
+            transform: translateY(-2px);
+        }
+        .maple-leaf {
+            position: absolute;
+            width: 30px;
+            opacity: 0.7;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>个人简历</caption>
+        
+        <!-- 基本信息 - 选项扩充 -->
+        <tr>
+            <td colspan="4">
+                <fieldset>
+                    <legend>基本信息</legend>
+                    <table>
+                        <tr>
+                            <td width="20%">姓名</td>
+                            <td><input type="text" required maxlength="20"></td>
+                            <td width="15%">性别</td>
+                            <td>
+                                <select>
+                                    <option>男</option>
+                                    <option>女</option>
+                                    <option>其他</option>
+                                    <option>不愿透露</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>年龄</td>
+                            <td><input type="number" min="16" max="70"></td>
+                            <td>籍贯</td>
+                            <td>
+                                <select>
+                                    <option>北京</option>
+                                    <option>上海</option>
+                                    <option>广东</option>
+                                    <option>江苏</option>
+                                    <option>浙江</option>
+                                    <option>其他省份</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>联系电话</td>
+                            <td><input type="tel" pattern="[0-9]{11}"></td>
+                            <td>电子邮箱</td>
+                            <td><input type="email" required></td>
+                        </tr>
+                        <tr>
+                            <td>学历</td>
+                            <td>
+                                <select>
+                                    <option>初中及以下</option>
+                                    <option>高中</option>
+                                    <option>大专</option>
+                                    <option>本科</option>
+                                    <option>硕士</option>
+                                    <option>博士</option>
+                                    <option>博士后</option>
+                                </select>
+                            </td>
+                            <td>健康状况</td>
+                            <td>
+                                <select>
+                                    <option>优秀</option>
+                                    <option>良好</option>
+                                    <option>一般</option>
+                                    <option>有轻微疾病</option>
+                                    <option>有严重疾病</option>
+                                    <option>残疾</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>婚姻状况</td>
+                            <td>
+                                <select>
+                                    <option>未婚</option>
+                                    <option>已婚</option>
+                                    <option>离异</option>
+                                    <option>丧偶</option>
+                                    <option>分居</option>
+                                    <option>恋爱中</option>
+                                </select>
+                            </td>
+                            <td>政治面貌</td>
+                            <td>
+                                <select>
+                                    <option>群众</option>
+                                    <option>共青团员</option>
+                                    <option>中共党员</option>
+                                    <option>民主党派</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </td>
+        </tr>
+
+        <!-- 求职意向 - 选项扩充 -->
+		     <tr>
+		            <td colspan="4">
+		                <fieldset>
+		                    <legend>求职意向</legend>
+		                    <select multiple size="8" style="width:100%; height:150px;">
+		                        <optgroup label="技术类">
+		                            <option>前端开发工程师</option>
+		                            <option>后端开发工程师</option>
+		                            <option>全栈开发工程师</option>
+		                            <option>移动开发工程师</option>
+		                            <option>大数据工程师</option>
+		                            <option>人工智能工程师</option>
+		                            <option>区块链工程师</option>
+		                            <option>云计算工程师</option>
+		                            <option>DevOps工程师</option>
+		                            <option>测试工程师</option>
+		                        </optgroup>
+		                        <optgroup label="设计类">
+		                            <option>UI设计师</option>
+		                            <option>UX设计师</option>
+		                            <option>平面设计师</option>
+		                            <option>三维建模师</option>
+		                            <option>动画设计师</option>
+		                            <option>游戏美术设计师</option>
+		                            <option>插画师</option>
+		                        </optgroup>
+		                        <optgroup label="管理类">
+		                            <option>项目经理</option>
+		                            <option>产品经理</option>
+		                            <option>技术总监</option>
+		                            <option>部门主管</option>
+		                            <option>运营总监</option>
+		                            <option>市场总监</option>
+		                        </optgroup>
+		                    </select>
+		                    <div style="margin-top:10px;">
+		                        <label><input type="checkbox"> 接受出差</label>
+		                        <label><input type="checkbox"> 接受加班</label>
+		                        <label><input type="checkbox"> 接受轮班</label>
+		                        <label><input type="checkbox"> 接受外派</label>
+		                    </div>
+		                </fieldset>
+		            </td>
+		        </tr>
+		
+		        <!-- 教育背景 - 选项扩充 -->
+		        <tr>
+		            <td colspan="4">
+		                <fieldset>
+		                    <legend>教育背景</legend>
+		                    <table style="width:100%">
+		                        <tr>
+		                            <td width="20%">毕业院校</td>
+		                            <td>
+		                                <select style="width:100%">
+		                                    <option>985高校</option>
+		                                    <option>211高校</option>
+		                                    <option>双一流高校</option>
+		                                    <option>普通本科</option>
+		                                    <option>独立学院</option>
+		                                    <option>高职高专</option>
+		                                    <option>海外院校</option>
+		                                    <option>其他院校</option>
+		                                </select>
+		                            </td>
+		                            <td width="20%">专业</td>
+		                            <td>
+		                                <select style="width:100%">
+		                                    <optgroup label="计算机类">
+		                                        <option>计算机科学与技术</option>
+		                                        <option>软件工程</option>
+		                                        <option>网络工程</option>
+		                                        <option>信息安全</option>
+		                                        <option>物联网工程</option>
+		                                        <option>数据科学与大数据技术</option>
+		                                    </optgroup>
+		                                    <optgroup label="电子信息类">
+		                                        <option>电子信息工程</option>
+		                                        <option>通信工程</option>
+		                                        <option>电子科学与技术</option>
+		                                        <option>微电子科学与工程</option>
+		                                    </optgroup>
+		                                    <optgroup label="其他理工类">
+		                                        <option>数学与应用数学</option>
+		                                        <option>物理学</option>
+		                                        <option>机械工程</option>
+		                                        <option>电气工程</option>
+		                                    </optgroup>
+		                                    <optgroup label="人文社科类">
+		                                        <option>汉语言文学</option>
+		                                        <option>英语</option>
+		                                        <option>法学</option>
+		                                        <option>经济学</option>
+		                                    </optgroup>
+		                                </select>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <td>入学时间</td>
+		                            <td><input type="month"></td>
+		                            <td>毕业时间</td>
+		                            <td><input type="month"></td>
+		                        </tr>
+		                    </table>
+		                </fieldset>
+		            </td>
+		        </tr>
+		
+		        <!-- 技能证书 - 选项扩充 -->
+		        <tr>
+		            <td colspan="4">
+		                <fieldset>
+		                    <legend>技能证书</legend>
+		                    <div class="checkbox-group">
+		                        <label><input type="checkbox"> 英语四级(CET-4)</label>
+		                        <label><input type="checkbox"> 英语六级(CET-6)</label>
+		                        <label><input type="checkbox"> 英语专业八级(TEM-8)</label>
+		                        <label><input type="checkbox"> 计算机二级(MS Office)</label>
+		                        <label><input type="checkbox"> 计算机三级(网络技术)</label>
+		                        <label><input type="checkbox"> 计算机四级(数据库)</label>
+		                        <label><input type="checkbox"> 普通话二级甲等</label>
+		                        <label><input type="checkbox"> 普通话一级乙等</label>
+		                        <label><input type="checkbox"> 教师资格证</label>
+		                        <label><input type="checkbox"> 会计从业资格证</label>
+		                        <label><input type="checkbox"> 注册会计师(CPA)</label>
+		                        <label><input type="checkbox"> 法律职业资格证</label>
+		                        <label><input type="checkbox"> 注册建筑师</label>
+		                        <label><input type="checkbox"> 注册工程师</label>
+		                        <label><input type="checkbox"> PMP项目管理认证</label>
+		                        <label><input type="checkbox"> Cisco认证(CCNA)</label>
+		                        <label><input type="checkbox"> Oracle认证(OCP)</label>
+		                        <label><input type="checkbox"> 微软认证(MCSA)</label>
+		                        <label><input type="checkbox"> 红帽认证(RHCE)</label>
+		                        <label><input type="checkbox"> AWS认证</label>
+		                    </div>
+		                </fieldset>
+		            </td>
+		        </tr>
+		
+		        <!-- 个人特长与爱好 - 选项扩充 -->
+		        <tr>
+		            <td colspan="4">
+		                <fieldset>
+		                    <legend>个人特长与爱好</legend>
+		                    <div class="checkbox-group">
+		                        <label><input type="checkbox"> 编程开发</label>
+		                        <label><input type="checkbox"> 网页设计</label>
+		                        <label><input type="checkbox"> 移动开发</label>
+		                        <label><input type="checkbox"> 数据分析</label>
+		                        <label><input type="checkbox"> 摄影摄像</label>
+		                        <label><input type="checkbox"> 视频剪辑</label>
+		                        <label><input type="checkbox"> 平面设计</label>
+		                        <label><input type="checkbox"> 3D建模</label>
+		                        <label><input type="checkbox"> 绘画创作</label>
+		                        <label><input type="checkbox"> 书法艺术</label>
+		                        <label><input type="checkbox"> 音乐演奏</label>
+		                        <label><input type="checkbox"> 歌唱表演</label>
+		                        <label><input type="checkbox"> 舞蹈艺术</label>
+		                        <label><input type="checkbox"> 体育运动</label>
+		                        <label><input type="checkbox"> 健身训练</label>
+		                        <label><input type="checkbox"> 户外探险</label>
+		                        <label><input type="checkbox"> 旅游摄影</label>
+		                        <label><input type="checkbox"> 外语交流</label>
+		                        <label><input type="checkbox"> 写作创作</label>
+		                        <label><input type="checkbox"> 演讲辩论</label>
+		                    </div>
+		                </fieldset>
+		            </td>
+		        </tr>
+		
+		        <!-- 项目经历 -->
+		        <tr>
+		            <td colspan="4">
+		                <fieldset>
+		                    <legend>项目经历</legend>
+		                    <textarea placeholder="请详细描述参与的项目经历，包括项目名称、担任角色、使用技术、项目成果等"></textarea>
+		                </fieldset>
+		            </td>
+		        </tr>
+		
+		        <!-- 自我评价 -->
+		        <tr>
+		            <td colspan="4">
+		                <fieldset>
+		                    <legend>自我评价</legend>
+		                    <textarea placeholder="请用200-500字描述您的个人特点、职业优势等"></textarea>
+		                </fieldset>
+		            </td>
+		        </tr>
+		
+		        <tr>
+		            <td colspan="4" style="text-align: center;">
+		                <button type="submit"><i class="fas fa-paper-plane"></i> 提交简历</button>
+		                <button type="reset"><i class="fas fa-undo"></i> 重置表单</button>
+		            </td>
+		        </tr>
+		    </table>
+		
+		    <!-- 枫叶装饰元素 -->
+		    < img src="maple-leaf.png" class="maple-leaf" style="top:100px; left:5%">
+		    < img src="maple-leaf.png" class="maple-leaf" style="top:300px; right:5%">
+		    < img src="maple-leaf.png" class="maple-leaf" style="bottom:100px; left:15%">
+		    < img src="maple-leaf.png" class="maple-leaf" style="bottom:200px; right:10%">
+		
+		    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+		</body>
+		</html>
